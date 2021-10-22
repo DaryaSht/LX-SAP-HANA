@@ -1,0 +1,13 @@
+KIN_ID,LANG,KIN_DESCRIPTION
+1,E,Close
+2,E,Not very close
+3,E,There is some..
+4,E,No
+1,D,Nah
+2,D,Nicht zu nah
+3,D,Es gibt irgendwelche..
+4,D,Keine
+1,R,Близкий круг
+2,R,Не слишком близкий
+3,R,Есть какое-то..
+4,R,Нет

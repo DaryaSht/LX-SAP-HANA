@@ -1,0 +1,28 @@
+PROCEDURE "household_size"( in hh_size INT )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+
+    DECLARE i INTEGER;
+    DECLARE lines INTEGER.
+
+    t_hobbits_in_hh = 
+    SELECT household.HOUSEHOLD_NAME, COUNT(*) as hobbits_in_hhold
+     FROM "HOUSEHOLD" as household
+     INNER JOIN "HOBBIT" as hobbit
+     ON hobbit.HOUSEHOLD_ID = household.HOUSEHOLD_ID
+     GROUP BY household.HOUSEHOLD_NAME; 
+
+     SELECT COUNT(*) into lines FROM :t_hobbits_in_hh;
+
+    --  LOOP AT t_hobbits_in_hh 
+
+    -- DECLARE pos INTEGER DEFAULT 0;
+    -- FOR i IN 1..RECORD_COUNT(t_hobbits_in_hh) DO
+    --     -- pos = :pos + 1;
+    -- END FOR;
+    -- -- output1 = SELECT value FROM T1 where position = :i ;
+
+END

@@ -1,0 +1,94 @@
+{
+    "format_version": 1,
+    "imports": [{
+      "target_table": "HOUSEHOLD",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "household.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+        },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+    },
+    {
+      "target_table": "HOBBIT",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "hobbit.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+        },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+    },
+    {
+      "target_table": "BELONGING",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "belonging.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+        },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+    },
+    {
+      "target_table": "KINSHIP_TEXT",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "kinship_text.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+  },
+    {
+      "target_table": "RELATION",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "relation.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+  },
+    {
+      "target_table": "STORAGE",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "storage.csv",
+        "has_header": true,
+        "dialect": "HANA",
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+        "import_settings": {
+            "include_filter" : [ ]
+        }
+  } 
+]
+}

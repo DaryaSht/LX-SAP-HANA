@@ -1,0 +1,8 @@
+HOBBIT_ID,FIRST_NAME,LAST_NAME,BIRTH_DATE,HOUSEHOLD_ID
+1,Bilbo,Baggins,,1
+2,Frodo,Baggins,,1
+3,Sam,Gamgee,,2
+4,Merry,Brandybuck,,3
+5,Pippin,Took,,3
+6,Adalgrim,Took,,4
+7,Pervinca,Took,,4

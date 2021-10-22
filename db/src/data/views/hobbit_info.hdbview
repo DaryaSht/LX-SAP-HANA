@@ -1,0 +1,13 @@
+VIEW "HOBBIT_INFO" (
+    "HOBBIT_ID",
+    "FULL_NAME",
+    "BIRTH_DATE",
+    "HOUSEHOLD_NAME"
+    -- "HAS_DEBTS"
+) AS SELECT hobbit."HOBBIT_ID",
+            hobbit."FULL_NAME",
+            hobbit."BIRTH_DATE",
+            hobbit."HOUSEHOLD_JOIN"."HOUSEHOLD_NAME"
+            -- relation."HAS_DEBTS"
+            FROM "HOBBIT" AS hobbit
+            -- INNER JOIN "RELATION" as relation

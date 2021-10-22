@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="hobbitrelation_cv" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="hobbitrelation_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HOUSEHOLD">
+    <resourceUri>HOUSEHOLD</resourceUri>
+  </DataSource>
+  <DataSource id="RELATION">
+    <resourceUri>RELATION</resourceUri>
+  </DataSource>
+  <DataSource id="Join_3$$$$RELATION$$">
+    <resourceUri>RELATION</resourceUri>
+  </DataSource>
+  <DataSource id="HOBBIT">
+    <resourceUri>HOBBIT</resourceUri>
+  </DataSource>
+  <DataSource id="Join_1_1$$$$RELATION$$">
+    <resourceUri>RELATION</resourceUri>
+  </DataSource>
+  <DataSource id="KINSHIP_TEXT">
+    <resourceUri>KINSHIP_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="HOUSEHOLD_NAME"/>
+      <viewAttribute id="HOUSEHOLD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HOUSEHOLD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_NAME" source="HOUSEHOLD_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+    </input>
+    <input node="RELATION">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+    </input>
+    <joinAttribute name="HOUSEHOLD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="FULL_NAME"/>
+      <viewAttribute id="HOBBIT_ID"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute hidden="true" id="JOIN$HOBBIT_ID$HOBBIT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3$$$$RELATION$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$HOBBIT_ID$HOBBIT_ID" source="HOBBIT_ID"/>
+    </input>
+    <input node="HOBBIT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULL_NAME" source="FULL_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOBBIT_ID" source="HOBBIT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$HOBBIT_ID$HOBBIT_ID" source="HOBBIT_ID"/>
+    </input>
+    <joinAttribute name="JOIN$HOBBIT_ID$HOBBIT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="RELATION" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="FULL_NAME"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="HOUSEHOLD_ID"/>
+      <viewAttribute id="KIN_ID"/>
+      <viewAttribute hidden="true" id="JOIN$HOBBIT_ID$HOBBIT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_1$$$$RELATION$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KIN_ID" source="KIN_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$HOBBIT_ID$HOBBIT_ID" source="HOBBIT_ID"/>
+    </input>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULL_NAME" source="FULL_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$HOBBIT_ID$HOBBIT_ID" source="HOBBIT_ID"/>
+    </input>
+    <joinAttribute name="JOIN$HOBBIT_ID$HOBBIT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="RELATION" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="FULL_NAME"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="HOUSEHOLD_ID"/>
+      <viewAttribute id="KIN_ID"/>
+      <viewAttribute id="HOUSEHOLD_NAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULL_NAME" source="FULL_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KIN_ID" source="KIN_ID"/>
+    </input>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_NAME" source="HOUSEHOLD_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+    </input>
+    <joinAttribute name="HOUSEHOLD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="C1_1" joinType="textTable" languageColumn="LANG" multiJoinNode="Join_1" multiJoinCentralTable="RELATION" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="FULL_NAME"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="HOUSEHOLD_ID"/>
+      <viewAttribute id="KIN_ID"/>
+      <viewAttribute id="HOUSEHOLD_NAME"/>
+      <viewAttribute id="KIN_DESCRIPTION"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULL_NAME" source="FULL_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_ID" source="HOUSEHOLD_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KIN_ID" source="KIN_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOUSEHOLD_NAME" source="HOUSEHOLD_NAME"/>
+    </input>
+    <input node="KINSHIP_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KIN_DESCRIPTION" source="KIN_DESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KIN_ID" source="KIN_ID"/>
+    </input>
+    <joinAttribute name="KIN_ID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1_3">
+  <attributes>
+    <attribute id="KIN_DESCRIPTION" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Kin Name"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="KIN_DESCRIPTION"/>
+    </attribute>
+    <attribute id="HOUSEHOLD_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Family Name"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="HOUSEHOLD_NAME"/>
+    </attribute>
+    <attribute id="FIRST_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Hobbit Name"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="FIRST_NAME"/>
+    </attribute>
+    <attribute id="LAST_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Hobbit Lastname"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="LAST_NAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-114" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="HOUSEHOLD" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="45" y="41"/>
+      <rectangleSize width="209"/>
+    </shape>
+    <shape modelObjectName="RELATION" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="224" y="359"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="RELATION" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape modelObjectName="HOBBIT" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+  
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="210"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="KINSHIP_TEXT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="280" y="-40"/>
+      <rectangleSize width="185"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="276" y="77"/>
+      <rectangleSize width="193"/>
+    </shape>
+    <shape modelObjectName="RELATION" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="280" y="185"/>
+      <rectangleSize width="150"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

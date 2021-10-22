@@ -1,0 +1,13 @@
+PROCEDURE "hobbitswithdebts_count"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   SELECT hobbit.FULL_NAME, COUNT(*) as debts_count
+    FROM "HOBBIT" as hobbit 
+      INNER JOIN "RELATION" as relation 
+      ON hobbit.HOBBIT_ID = relation.HOBBIT_ID
+      WHERE relation.HAS_DEBTS = true
+    GROUP BY hobbit.FULL_NAME;
+END

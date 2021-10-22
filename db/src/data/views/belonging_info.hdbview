@@ -1,0 +1,16 @@
+VIEW "BELONGING_INFO" (
+    "BELONGING_ID",
+    "BELONGING_NAME",
+    "FIRST_NAME",
+    "LAST_NAME",
+    "STORAGE_NAME"
+    -- "HOUSEHOLD_NAME"
+) AS SELECT belonging."BELONGING_ID",
+            belonging."BELONGING_NAME",
+            belonging."HOBBIT_JOIN"."FIRST_NAME",
+            belonging."HOBBIT_JOIN"."LAST_NAME",
+            belonging."STORAGE_JOIN"."STORAGE_NAME"
+            -- household."HOUSEHOLD_NAME"
+            FROM "BELONGING" AS belonging
+            -- FULL OUTER JOIN "HOUSEHOLD" as household
+            -- ON belonging."STORAGE_JOIN"."HOUSEHOLD_ID" = household."HOUSEHOLD_ID"
